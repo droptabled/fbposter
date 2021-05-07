@@ -1,0 +1,47 @@
+<%= form_with(model: improvement, local: true) do |form| %>
+  <% if improvement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(improvement.errors.count, "error") %> prohibited this improvement from being saved:</h2>
+
+      <ul>
+      <% improvement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_private %>
+    <%= form.check_box :is_private %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estimated_effort %>
+    <%= form.text_field :estimated_effort %>
+  </div>
+
+  <div class="field">
+    <%= form.label :actual_effort %>
+    <%= form.text_field :actual_effort %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.number_field :status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

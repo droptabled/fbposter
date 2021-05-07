@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  is_private: false
+  estimated_effort: 1.5
+  actual_effort: 1.5
+  status: 1
+
+two:
+  name: MyString
+  description: MyText
+  is_private: false
+  estimated_effort: 1.5
+  actual_effort: 1.5
+  status: 1

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @improvement.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @improvement.description %>
+</p>
+
+<p>
+  <strong>Is private:</strong>
+  <%= @improvement.is_private %>
+</p>
+
+<p>
+  <strong>Estimated effort:</strong>
+  <%= @improvement.estimated_effort %>
+</p>
+
+<p>
+  <strong>Actual effort:</strong>
+  <%= @improvement.actual_effort %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @improvement.status %>
+</p>
+
+<%= link_to 'Edit', edit_improvement_path(@improvement) %> |
+<%= link_to 'Back', improvements_path %>
