@@ -7,8 +7,8 @@ class CreateImprovements < ActiveRecord::Migration[5.2]
       t.float :estimated_effort
       t.float :actual_effort
       t.integer :status
-      t.references :user, foreign_key: true
-      
+      t.references :user, foreign_key: {on_delete: :cascade}
+
       t.timestamps
     end
   end

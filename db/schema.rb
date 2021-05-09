@@ -10,20 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_195755) do
+ActiveRecord::Schema.define(version: 2021_05_07_214636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "comments", force: :cascade do |t|
-    t.string "title"
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "improvement_comments", force: :cascade do |t|
     t.text "body"
     t.bigint "user_id"
     t.bigint "improvement_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["improvement_id"], name: "index_comments_on_improvement_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["improvement_id"], name: "index_improvement_comments_on_improvement_id"
+    t.index ["user_id"], name: "index_improvement_comments_on_user_id"
   end
 
   create_table "improvements", force: :cascade do |t|
@@ -42,20 +67,12 @@ ActiveRecord::Schema.define(version: 2021_05_07_195755) do
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "provider"
     t.string "uid"
     t.string "name"
-    t.text "image"
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.string "email"
   end
 
-  add_foreign_key "comments", "improvements"
-  add_foreign_key "comments", "users"
-  add_foreign_key "improvements", "users"
+  add_foreign_key "improvement_comments", "improvements", on_delete: :cascade
+  add_foreign_key "improvement_comments", "users", on_delete: :cascade
+  add_foreign_key "improvements", "users", on_delete: :cascade
 end

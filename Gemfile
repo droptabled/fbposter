@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.5'
 #facebook oauth
 gem 'omniauth-facebook', '~> 7.0'
 gem 'devise', '~> 4.8'
+gem 'activeadmin'
+gem "omniauth-rails_csrf_protection"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

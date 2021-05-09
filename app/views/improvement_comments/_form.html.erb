@@ -1,0 +1,22 @@
+<%= form_with(model: [@improvement, improvement_comment], local: true) do |form| %>
+  <% if improvement_comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(improvement_comment.errors.count, "error") %> prohibited this improvement_comment from being saved:</h2>
+
+      <ul>
+      <% improvement_comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

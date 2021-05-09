@@ -30,5 +30,22 @@
   <%= @improvement.status %>
 </p>
 
+<div>
+  <strong>Comments</strong>
+  <table>
+  <% @comments.each do |comment| %>
+    <tr>
+      <td>
+        <p>
+          <strong><%= comment.user.name %></strong>
+        </p>
+        <p><%= comment.body %></p>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+
+<%= link_to 'Add Comment', new_improvement_improvement_comment_path(@improvement) %> |
 <%= link_to 'Edit', edit_improvement_path(@improvement) %> |
 <%= link_to 'Back', improvements_path %>

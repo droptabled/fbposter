@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.number_field :status %>
+    <%= form.select :status, Improvement.statuses.keys.to_a %>
   </div>
 
   <div class="actions">

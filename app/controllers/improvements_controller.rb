@@ -1,13 +1,15 @@
 class ImprovementsController < ApplicationController
   before_action :set_improvement, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user
   # GET /improvements or /improvements.json
   def index
-    @improvements = Improvement.all
+    @improvements = Improvement.where(user: current_user)
+    @publicImprovements = Improvement.where(is_private: false).where.not(user: current_user)
   end
 
   # GET /improvements/1 or /improvements/1.json
   def show
+    @comments = ImprovementComment.where(improvement_id: params["id"])
   end
 
   # GET /improvements/new
@@ -22,7 +24,7 @@ class ImprovementsController < ApplicationController
   # POST /improvements or /improvements.json
   def create
     @improvement = Improvement.new(improvement_params)
-
+    @improvement.user = current_user
     respond_to do |format|
       if @improvement.save
         format.html { redirect_to @improvement, notice: "Improvement was successfully created." }

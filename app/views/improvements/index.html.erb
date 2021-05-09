@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Improvements</h1>
+<h1>My Improvements</h1>
 
 <table>
   <thead>
@@ -17,6 +17,38 @@
 
   <tbody>
     <% @improvements.each do |improvement| %>
+      <tr>
+        <td><%= improvement.name %></td>
+        <td><%= improvement.description %></td>
+        <td><%= improvement.is_private %></td>
+        <td><%= improvement.estimated_effort %></td>
+        <td><%= improvement.actual_effort %></td>
+        <td><%= improvement.status %></td>
+        <td><%= link_to 'Show', improvement %></td>
+        <td><%= link_to 'Edit', edit_improvement_path(improvement) %></td>
+        <td><%= link_to 'Destroy', improvement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Public Improvements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Is private</th>
+      <th>Estimated effort</th>
+      <th>Actual effort</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @publicImprovements.each do |improvement| %>
       <tr>
         <td><%= improvement.name %></td>
         <td><%= improvement.description %></td>

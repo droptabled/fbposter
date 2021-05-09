@@ -1,0 +1,7 @@
+<h1>Home Improvement Project App</h1>
+<% if current_user %>
+  <%= link_to "Improvements", improvements_path %>
+  <%= link_to "Sign out", signout_path %>
+<% else %>
+  <%= link_to "Sign in with Facebook", "/auth/facebook", method: :post %>
+<% end %>
