@@ -68,3 +68,6 @@ yarn-debug.log*
 
 # Ignore secret startup
 startup.sh
+
+# Ignore vagrant fiiles
+.vagrant/
