@@ -1,14 +1,13 @@
 class ImprovementCommentsController < ApplicationController
   before_action :authenticate_user
+  before_action :set_improvement
 
   def new
-    @improvement = Improvement.find(params["improvement_id"])
     @improvement_comment = ImprovementComment.new
   end
 
   # POST /improvements or /improvements.json
   def create
-    @improvement = Improvement.find(params[:improvement_id])
     @improvementcomment = ImprovementComment.new(improvement_comment_params)
     @improvementcomment.user = current_user
     @improvementcomment.improvement = @improvement
@@ -23,8 +22,21 @@ class ImprovementCommentsController < ApplicationController
   end
 
   private
-    def improvement_comment_params
-      params.require(:improvement_comment).permit(:title, :body, :improvement_id)
+  def set_improvement
+    @improvement = Improvement.find_by(id: params["improvement_id"])
+    if @improvement.nil?
+      flash[:notice] = "Improvement not found"
+      redirect_back(fallback_location: improvements_path)
     end
+
+    if !@improvement.visible?(current_user)
+      flash[:notice] = "Inadequate Permissions"
+      redirect_back(fallback_location: improvements_path)
+    end
+  end
+
+  def improvement_comment_params
+    params.require(:improvement_comment).permit(:title, :body, :improvement_id)
+  end
 
 end

@@ -7,4 +7,8 @@ class Improvement < ApplicationRecord
   validates :estimated_effort, numericality: true
   validates :actual_effort, numericality: true
   validates :is_private, inclusion: [true, false]
+
+  def visible?(request_user)
+    user == request_user || !is_private
+  end
 end

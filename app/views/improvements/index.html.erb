@@ -43,7 +43,7 @@
       <th>Estimated effort</th>
       <th>Actual effort</th>
       <th>Status</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -56,7 +56,7 @@
         <td><%= improvement.estimated_effort %></td>
         <td><%= improvement.actual_effort %></td>
         <td><%= improvement.status %></td>
-        <td><%= link_to 'Go to Details Page', improvement %></td>
+        <td style="text-align:right;"><%= link_to 'Go to Details Page', improvement %></td>
       </tr>
     <% end %>
   </tbody>
@@ -64,4 +64,9 @@
 
 <br>
 
-<%= link_to 'New Improvement', new_improvement_path %>
+<p style="text-align:left;">
+    <%= link_to 'New Improvement', new_improvement_path %>
+    <span style="float:right;">
+        <%= link_to "Sign out", signout_path %>
+    </span>
+</p>
