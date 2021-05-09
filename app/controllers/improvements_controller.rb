@@ -1,6 +1,7 @@
 class ImprovementsController < ApplicationController
   before_action :set_improvement, only: %i[ show edit update destroy ]
   before_action :authenticate_user
+  before_action :validate_user, only: %i[ edit update destroy ]
   # GET /improvements or /improvements.json
   def index
     @improvements = Improvement.where(user: current_user)
@@ -62,6 +63,13 @@ class ImprovementsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_improvement
       @improvement = Improvement.find(params[:id])
+    end
+
+    def validate_user
+      if @improvement.user != current_user
+        flash[:notice] = "No permissions to change that Improvement"
+        redirect_back(fallback_location: improvements_path)
+      end
     end
 
     # Only allow a list of trusted parameters through.

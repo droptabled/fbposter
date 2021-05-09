@@ -56,9 +56,7 @@
         <td><%= improvement.estimated_effort %></td>
         <td><%= improvement.actual_effort %></td>
         <td><%= improvement.status %></td>
-        <td><%= link_to 'Show', improvement %></td>
-        <td><%= link_to 'Edit', edit_improvement_path(improvement) %></td>
-        <td><%= link_to 'Destroy', improvement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Go to Details Page', improvement %></td>
       </tr>
     <% end %>
   </tbody>

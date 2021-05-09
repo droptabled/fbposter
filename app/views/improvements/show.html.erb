@@ -46,6 +46,8 @@
   </table>
 </div>
 
-<%= link_to 'Add Comment', new_improvement_improvement_comment_path(@improvement) %> |
-<%= link_to 'Edit', edit_improvement_path(@improvement) %> |
-<%= link_to 'Back', improvements_path %>
+<%= link_to 'Add Comment', new_improvement_improvement_comment_path(@improvement) %>
+<% if @improvement.user == current_user %>
+ |<%= link_to 'Edit', edit_improvement_path(@improvement) %>
+<% end %>
+ |<%= link_to 'Back', improvements_path %>
